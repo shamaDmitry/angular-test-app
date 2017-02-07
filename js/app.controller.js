@@ -10,14 +10,22 @@
 
             vm.title = "Hello";
             vm.users = [];
+            vm.query = '';
             vm.userName = '';
 
             vm.addUser = addUser;
+            vm.search = search;
 
-            function addUser(name) {
-                if(name) {
-                    vm.users.push(name);
+            function addUser() {
+                if(vm.userName) {
+                    vm.users.push({name: vm.userName});
                     vm.userName = '';
+                }
+            }
+
+            function search() {
+                if(vm.query){
+                    console.log(vm.query);
                 }
             }
         }

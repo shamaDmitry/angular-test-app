@@ -8,25 +8,38 @@
 </head>
 <body ng-cloak ng-controller="MainController as main">
     <div class="container">
-        <p>
+        <h1>
             {{ main.title }}
-        </p>
+        </h1>
+
+        <div class="form-group input-group">
+            <input class="form-control"
+            type="text"
+            ng-model="main.query"
+            ng-model-options="{debounce: 500}"
+            ng-change="main.search()">
+
+            <span class="input-group-addon">Search</span>
+        </div>
 
         <form>
-            <input type="text" ng-model="main.userName">
+            <div class="form-group input-group">
+                <input class="form-control" type="text" ng-model="main.userName">
 
-            <button class="btn btn-primary" ng-click="main.addUser(main.userName)">
-                add User
-            </button>
+                <span class="input-group-btn">
+                    <button class="btn btn-primary "
+                       ng-click="main.addUser(main.userName)">
+                        add User
+                    </button>
+                </span>
+            </div>
         </form>
 
-
-
-        <ul>
-            <li ng-repeat="user in main.users track by $index">
-                {{ user }}
+        <ol>
+            <li ng-repeat="user in main.users | filter: main.query track by $index">
+                Name: {{ user.name }}
             </li>
-        </ul>
+        </ol>
 
         <pre>
             {{ main | json }}
