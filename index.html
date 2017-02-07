@@ -15,35 +15,65 @@
         <div class="form-group input-group">
             <input class="form-control"
             type="text"
-            ng-model="main.query"
+            ng-model="query.name"
             ng-model-options="{debounce: 500}"
             ng-change="main.search()">
 
             <span class="input-group-addon">Search</span>
         </div>
 
-        <form>
-            <div class="form-group input-group">
-                <input class="form-control" type="text" ng-model="main.userName">
+        <div class="row">
+            <div class="col-xs-4">
+                <form name="userForm" ng-submit="main.addUser()" novalidate>
+                    <div class="form-group">
+                        <label for="">Name</label>
+                        <input class="form-control" type="text"
+                        ng-model="main.user.name"
+                        name="name"
+                        required>
 
-                <span class="input-group-btn">
-                    <button class="btn btn-primary "
-                       ng-click="main.addUser(main.userName)">
-                        add User
+                        <div
+                            ng-show="userForm.name.$invalid"
+                            class="alert alert-danger">
+                            required name
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Age</label>
+                        <input class="form-control" type="number"
+                        ng-model="main.user.age"
+                        min="18" max="99"
+                        name="age"
+                        required>
+
+                        <div
+                            ng-show="userForm.age.$invalid"
+                            class="alert alert-danger">
+                            required age
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="btn btn-primary"
+                        ng-disabled="userForm.$invalid">
+                        Add User
                     </button>
-                </span>
+                </form>
             </div>
-        </form>
 
-        <ol>
-            <li ng-repeat="user in main.users | filter: main.query track by $index">
-                Name: {{ user.name }}
-            </li>
-        </ol>
+            <div class="col-xs-8">
+                <ol>
+                    <li ng-repeat="user in main.users | filter:query track by $index">
+                        Name: {{ user.name }} - Age: {{ user.age }}
+                    </li>
+                </ol>
 
-        <pre>
-            {{ main | json }}
-        </pre>
+                <!--<pre>
+                    {{ userForm | json }}
+                </pre>-->
+            </div>
+        </div>
     </div><!--container-->
 
     <!--<ui-view></ui-view>-->

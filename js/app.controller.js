@@ -9,18 +9,30 @@
             var vm = this;
 
             vm.title = "Hello";
-            vm.users = [];
-            vm.query = '';
-            vm.userName = '';
+            vm.users = [
+                {
+                    name: 'Dima',
+                    age: '27'
+                },
+                {
+                    name: 'Oleg',
+                    age: '27'
+                },
+            ];
+            //vm.query = '';
+            vm.user = {
+                name: '',
+                age: ''
+            };
 
             vm.addUser = addUser;
             vm.search = search;
 
             function addUser() {
-                if(vm.userName) {
-                    vm.users.push({name: vm.userName});
-                    vm.userName = '';
-                }
+                vm.users.push(angular.copy(vm.user));
+
+                vm.user.name = '';
+                vm.user.age = '';
             }
 
             function search() {
