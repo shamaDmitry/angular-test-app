@@ -5,7 +5,7 @@
         .module('app')
         .config(router);
 
-        router.$inject = ['$stateProvider, $urlProvider'];
+        router.$inject = ['$stateProvider', '$urlProvider'];
 
         function router($stateProvider, $urlProvider) {
             $stateProvider

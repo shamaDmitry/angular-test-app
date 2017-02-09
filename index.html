@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <title>My App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
 </head>
 <body ng-cloak ng-controller="MainController as main">
     <div class="container">
@@ -23,7 +25,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-4">
+            <div class="col-xs-12">
                 <form name="userForm" ng-submit="main.addUser()" novalidate>
                     <div class="form-group">
                         <label for="">Name</label>
@@ -43,8 +45,8 @@
                         <label for="">Age</label>
                         <input class="form-control" type="number"
                         ng-model="main.user.age"
-                        min="18" max="99"
                         name="age"
+                        min="0"
                         required>
 
                         <div
@@ -62,26 +64,99 @@
                 </form>
             </div>
 
-            <div class="col-xs-8">
+            <button ng-click="main.checkState()">Check state</button>
+
+            <div class="col-xs-12">
                 <ol>
                     <li ng-repeat="user in main.users | filter:query track by $index">
-                        Name: {{ user.name }} - Age: {{ user.age }}
+                        <div ng-hide="user.edit">
+                            Name: {{ user.name }} - Age: {{ user.age }}
+                        </div>
+
+                        <div ng-show="user.edit">
+                            Name: <input ng-model="user.name" type="text"> -
+                            Age: <input type="number" ng-model="user.age">
+                        </div>
+
+                        <button type="button" class="btn btn-default" ng-click="main.openModal(user)">Edit in modal</button>
+
+                        <button ng-hide="user.edit" class="btn btn-primary"
+                        ng-click="main.editUser(user)">Edit</button>
+
+                        <button ng-show="user.edit" class="btn btn-success"
+                        ng-click="main.saveUser(user)">Save</button>
+
+                        <!--<button class="btn btn-danger"
+                        ng-click="main.deleteUser(user)">delete</button>-->
                     </li>
                 </ol>
+
+                <!--<user-list users="main.users"></user-list>-->
 
                 <!--<pre>
                     {{ userForm | json }}
                 </pre>-->
             </div>
         </div>
+
+
+        <uib-accordion close-others="oneAtATime">
+            <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                This content is straight in the template.
+            </div>
+        </uib-accordion>
+        <!--<script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-dialog" ng-controller="MainController as main">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="modal-title">
+                            I'm a modal!
+                        </h3>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                        <pre>
+                            {{ main.users | json }}
+                        </pre>
+
+                        <form>
+                            Name: <input type="text"> -
+                            Age: <input type="number">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+
+                        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </script>-->
+
+
+        <div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In voluptatum molestias iure aut temporibus cupiditate provident maiores illum maxime facilis. Nam eos culpa laborum tempora numquam sunt vitae, fugit non.</div>
+            <div>Quis dignissimos aliquam accusantium assumenda ullam nam nostrum illo sit inventore reiciendis reprehenderit voluptas odio, possimus cumque doloribus provident earum dolores, unde, sed at. Dolor quas fuga porro, perspiciatis eligendi.</div>
+            <div>Earum, aliquam nesciunt quasi eligendi illo eos. Quia harum accusantium voluptatem optio, hic itaque? Porro, repellat, tenetur deserunt aliquam odio voluptatem dolore at, fugiat id mollitia suscipit ea maiores obcaecati.</div>
+            <div>Sequi perferendis ex, nihil molestias in commodi aliquid consectetur vel eaque aspernatur officia unde perspiciatis, reprehenderit odit delectus ad, autem eveniet minus exercitationem. Eos similique debitis, minima assumenda. Officia, perferendis.</div>
+            <div>Voluptatum adipisci atque vero earum deleniti ea autem veritatis esse architecto nobis quibusdam quidem asperiores, doloribus quos reprehenderit officiis provident magnam voluptates deserunt amet molestias? Eveniet aperiam sint saepe unde.</div>
+            <div>Mollitia quaerat voluptatibus similique temporibus laborum officia consequatur dicta nihil quae officiis, sunt aperiam enim, maxime! Minus facilis earum itaque et quae quod dolor, nobis dolores adipisci neque, aut vero.</div>
+            <div>Ut architecto, placeat dolorem. Quam rem ipsam delectus voluptatum in enim porro ab eligendi illum illo asperiores itaque aut obcaecati magni cumque odit tenetur ex animi dolorem, necessitatibus ipsum voluptate?</div>
+            <div>Magnam saepe vitae cum, rem praesentium, sapiente iste! Voluptas est neque, nam. Quam fugit tenetur exercitationem numquam et dolorum aut quaerat modi? Ex excepturi beatae est alias id modi obcaecati.</div>
+            <div>Officiis eos fuga asperiores vero aspernatur, repellendus eius voluptas molestias dolorem eligendi similique suscipit adipisci deserunt saepe reiciendis? Veritatis a laudantium facere provident, quia aperiam numquam harum inventore necessitatibus, commodi!</div>
+            <div>Sunt dolorem dolore sequi eligendi delectus placeat magnam nulla et officia, libero, tempora, qui ipsum eos neque. Vero architecto corporis, hic quis ea dolores assumenda atque necessitatibus non in sunt.</div>
+        </div>
     </div><!--container-->
 
     <!--<ui-view></ui-view>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>-->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+
 
     <script src="js/app.module.js"></script>
     <script src="js/app.controller.js"></script>
+    <script src="js/modal.controller.js"></script>
+    <script src="js/userList/userlist.directive.js"></script>
     <!--<script src="js/app.router.js"></script>-->
 </body>
 </html>

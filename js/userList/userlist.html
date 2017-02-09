@@ -1,0 +1,5 @@
+<ol>
+    <li ng-repeat="user in vm.users | filter:query track by $index">
+    Name: {{ user.name }} - Age: {{ user.age }}
+    </li>
+</ol>
