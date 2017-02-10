@@ -64,8 +64,6 @@
                 </form>
             </div>
 
-            <button ng-click="main.checkState()">Check state</button>
-
             <div class="col-xs-12">
                 <ol>
                     <li ng-repeat="user in main.users | filter:query track by $index">
@@ -92,46 +90,8 @@
                 </ol>
 
                 <!--<user-list users="main.users"></user-list>-->
-
-                <!--<pre>
-                    {{ userForm | json }}
-                </pre>-->
             </div>
         </div>
-
-
-        <uib-accordion close-others="oneAtATime">
-            <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-                This content is straight in the template.
-            </div>
-        </uib-accordion>
-        <!--<script type="text/ng-template" id="myModalContent.html">
-            <div class="modal-dialog" ng-controller="MainController as main">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="modal-title">
-                            I'm a modal!
-                        </h3>
-                    </div>
-                    <div class="modal-body" id="modal-body">
-                        <pre>
-                            {{ main.users | json }}
-                        </pre>
-
-                        <form>
-                            Name: <input type="text"> -
-                            Age: <input type="number">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-
-                        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </script>-->
-
 
         <div>
             <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In voluptatum molestias iure aut temporibus cupiditate provident maiores illum maxime facilis. Nam eos culpa laborum tempora numquam sunt vitae, fugit non.</div>
@@ -147,7 +107,6 @@
         </div>
     </div><!--container-->
 
-    <!--<ui-view></ui-view>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/lodash/lodash.js"></script>

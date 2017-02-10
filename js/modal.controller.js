@@ -11,7 +11,6 @@
             var vm = this;
 
             vm.user = angular.copy(user);
-
             vm.ok = ok;
             vm.cancel = cancel;
 
@@ -26,7 +25,5 @@
             function cancel() {
                 console.log('cancel');
             }
-
-            console.log(vm);
         }
 })();

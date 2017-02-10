@@ -11,6 +11,7 @@
             var vm = this;
 
             vm.title = "Hello";
+            vm.query = '';
             vm.users = [
                 {
                     name: 'Dima',
@@ -25,19 +26,16 @@
                     id:2
                 },
             ];
-            vm.query = '';
             vm.user = {
                 name: '',
                 age: '',
                 edit: false
             };
 
-
             vm.addUser = addUser;
             vm.search = search;
             vm.editUser = editUser;
             vm.saveUser = saveUser;
-            vm.checkState = checkState;
             vm.openModal = openModal;
 
             function addUser() {
@@ -64,19 +62,15 @@
                 }
             }
 
-            function checkState() {
-                console.log(vm.users);
-            }
-
             function openModal(user) {
                 var modalInstance = $uibModal.open({
                     animation: true,
                     controller: 'ModalController',
                     controllerAs: 'modal',
+                    templateUrl: 'templates/modal.html',
                     //templateUrl: 'myModalContent.html',
                     //windowTemplateUrl: 'myModalContent.html',
                     //bindToController: true,
-                    templateUrl: 'templates/modal.html',
                     //windowTemplateUrl: 'templates/modal.html',
                     resolve: {
                         user: function() {
@@ -85,18 +79,20 @@
                     }
                 });
 
-                modalInstance.result.then(function(result) {
-                    console.log('Result: ', result);
-                    var index = _.findIndex(vm.users, function(o) {
-                        return o.id == result.id;
-                    });
+                modalInstance.result
+                .then(
+                    function(result) {
+                        var index = _.findIndex(vm.users, function(o) {
+                            return o.id == result.id;
+                        });
 
-                    console.log(index);
+                        vm.users.splice(index, 1, result);
+                    },
 
-                    vm.users.splice(index, 1, result);
-                }, function () {
-                    $log.info('modal-component dismissed at: ' + new Date());
-                });
+                    function () {
+                        $log.info('modal-component dismissed at: ' + new Date());
+                    }
+                );
             }
         }
 })();
