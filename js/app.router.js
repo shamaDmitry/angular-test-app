@@ -8,6 +8,10 @@
         Router.$inject = ['$stateProvider', '$urlRouterProvider'];
 
         function Router($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.when("", "/");
+
+            $urlRouterProvider.otherwise("/");
+
             $stateProvider
             .state('landing', {
                 abstract: true,
@@ -20,6 +24,14 @@
             .state('landing.about', {
                 url: '/about',
                 templateUrl: 'templates/landing/about.html'
+            })
+
+            .state('dashboard', {
+                abstract: true,
+                templateUrl: 'templates/dashboard/index.html'
+            })
+            .state('dashboard.main', {
+                templateUrl: 'templates/dashboard/main.html'
             })
         }
 
