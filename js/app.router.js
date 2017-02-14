@@ -3,17 +3,23 @@
 
     angular
         .module('app')
-        .config(router);
+        .config(Router);
 
-        router.$inject = ['$stateProvider', '$urlProvider'];
+        Router.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-        function router($stateProvider, $urlProvider) {
+        function Router($stateProvider, $urlRouterProvider) {
             $stateProvider
-            .state('home', {
-                url: '/' ,
-                templateUrl: 'templates/home.html',
-                controller: MainController,
-                controllerAs: main
+            .state('landing', {
+                abstract: true,
+                templateUrl: 'templates/landing/index.html'
+            })
+            .state('landing.main', {
+                url: '/',
+                templateUrl: 'templates/landing/main.html'
+            })
+            .state('landing.about', {
+                url: '/about',
+                templateUrl: 'templates/landing/about.html'
             })
         }
 

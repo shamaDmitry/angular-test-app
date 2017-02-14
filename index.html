@@ -8,114 +8,20 @@
 
     <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
 </head>
-<body ng-cloak ng-controller="MainController as main">
-    <div class="container">
-        <h1>
-            {{ main.title }}
-        </h1>
-
-        <div class="form-group input-group">
-            <input class="form-control"
-            type="text"
-            ng-model="query.name"
-            ng-model-options="{debounce: 500}"
-            ng-change="main.search()">
-
-            <span class="input-group-addon">Search</span>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <form name="userForm" ng-submit="main.addUser()" novalidate>
-                    <div class="form-group">
-                        <label for="">Name</label>
-                        <input class="form-control" type="text"
-                        ng-model="main.user.name"
-                        name="name"
-                        required>
-
-                        <div
-                            ng-show="userForm.name.$invalid"
-                            class="alert alert-danger">
-                            required name
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Age</label>
-                        <input class="form-control" type="number"
-                        ng-model="main.user.age"
-                        name="age"
-                        min="0"
-                        required>
-
-                        <div
-                            ng-show="userForm.age.$invalid"
-                            class="alert alert-danger">
-                            required age
-                        </div>
-                    </div>
-
-                    <button type="submit"
-                        class="btn btn-primary"
-                        ng-disabled="userForm.$invalid">
-                        Add User
-                    </button>
-                </form>
-            </div>
-
-            <div class="col-xs-12">
-                <ol>
-                    <li ng-repeat="user in main.users | filter:query track by $index">
-                        <div ng-hide="user.edit">
-                            Name: {{ user.name }} - Age: {{ user.age }}
-                        </div>
-
-                        <div ng-show="user.edit">
-                            Name: <input ng-model="user.name" type="text"> -
-                            Age: <input type="number" ng-model="user.age">
-                        </div>
-
-                        <button type="button" class="btn btn-default" ng-click="main.openModal(user)">Edit in modal</button>
-
-                        <button ng-hide="user.edit" class="btn btn-primary"
-                        ng-click="main.editUser(user)">Edit</button>
-
-                        <button ng-show="user.edit" class="btn btn-success"
-                        ng-click="main.saveUser(user)">Save</button>
-
-                        <!--<button class="btn btn-danger"
-                        ng-click="main.deleteUser(user)">delete</button>-->
-                    </li>
-                </ol>
-
-                <!--<user-list users="main.users"></user-list>-->
-            </div>
-        </div>
-
-        <div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In voluptatum molestias iure aut temporibus cupiditate provident maiores illum maxime facilis. Nam eos culpa laborum tempora numquam sunt vitae, fugit non.</div>
-            <div>Quis dignissimos aliquam accusantium assumenda ullam nam nostrum illo sit inventore reiciendis reprehenderit voluptas odio, possimus cumque doloribus provident earum dolores, unde, sed at. Dolor quas fuga porro, perspiciatis eligendi.</div>
-            <div>Earum, aliquam nesciunt quasi eligendi illo eos. Quia harum accusantium voluptatem optio, hic itaque? Porro, repellat, tenetur deserunt aliquam odio voluptatem dolore at, fugiat id mollitia suscipit ea maiores obcaecati.</div>
-            <div>Sequi perferendis ex, nihil molestias in commodi aliquid consectetur vel eaque aspernatur officia unde perspiciatis, reprehenderit odit delectus ad, autem eveniet minus exercitationem. Eos similique debitis, minima assumenda. Officia, perferendis.</div>
-            <div>Voluptatum adipisci atque vero earum deleniti ea autem veritatis esse architecto nobis quibusdam quidem asperiores, doloribus quos reprehenderit officiis provident magnam voluptates deserunt amet molestias? Eveniet aperiam sint saepe unde.</div>
-            <div>Mollitia quaerat voluptatibus similique temporibus laborum officia consequatur dicta nihil quae officiis, sunt aperiam enim, maxime! Minus facilis earum itaque et quae quod dolor, nobis dolores adipisci neque, aut vero.</div>
-            <div>Ut architecto, placeat dolorem. Quam rem ipsam delectus voluptatum in enim porro ab eligendi illum illo asperiores itaque aut obcaecati magni cumque odit tenetur ex animi dolorem, necessitatibus ipsum voluptate?</div>
-            <div>Magnam saepe vitae cum, rem praesentium, sapiente iste! Voluptas est neque, nam. Quam fugit tenetur exercitationem numquam et dolorum aut quaerat modi? Ex excepturi beatae est alias id modi obcaecati.</div>
-            <div>Officiis eos fuga asperiores vero aspernatur, repellendus eius voluptas molestias dolorem eligendi similique suscipit adipisci deserunt saepe reiciendis? Veritatis a laudantium facere provident, quia aperiam numquam harum inventore necessitatibus, commodi!</div>
-            <div>Sunt dolorem dolore sequi eligendi delectus placeat magnam nulla et officia, libero, tempora, qui ipsum eos neque. Vero architecto corporis, hic quis ea dolores assumenda atque necessitatibus non in sunt.</div>
-        </div>
-    </div><!--container-->
+<body ng-cloak>
+    <ui-view></ui-view>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
 
     <script src="js/app.module.js"></script>
     <script src="js/app.controller.js"></script>
     <script src="js/modal.controller.js"></script>
-    <script src="js/userList/userlist.directive.js"></script>
-    <!--<script src="js/app.router.js"></script>-->
+    <script src="js/userService.js"></script>
+    <script src="js/app.router.js"></script>
 </body>
 </html>
