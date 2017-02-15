@@ -1,0 +1,32 @@
+<header ng-include="'templates/_partials/_header.html'"></header>
+
+<main class="b-content">
+    <section class="container">
+        <div class="row">
+            <aside class="col-sm-4">
+                <ul class="nav nav-pills nav-stacked" style="margin-top:20px">
+                    <li ui-sref-active="active">
+                        <a ui-sref="dashboard.main">Users</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="dashboard.profile">Profile</a>
+                    </li>
+                </ul>
+            </aside><!--col-->
+
+            <div ui-view class="col-sm-8"></div><!--col-->
+        </div><!--row-->
+    </section><!--container-->
+</main>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>
+                    &copy; shama
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

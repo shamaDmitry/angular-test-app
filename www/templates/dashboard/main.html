@@ -1,0 +1,32 @@
+<!--controllerAs userList-->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>{{ userList.title }}</h1>
+        </div><!--col-->
+    </div><!--row-->
+
+    <div class="row">
+        <div class="col-md-6" ng-repeat="user in userList.users">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a ui-sref="dashboard.user({id: user.id})">{{ user.name }}</a>
+                    </h3>
+                </div>
+
+                <div class="panel-body">
+                    <p>
+                        <a ui-sref="dashboard.user({id: user.id})" class="block">
+                            <img ng-src="http://placehold.it/350" alt="" class="img-circle img-responsive">
+                        </a>
+                    </p>
+                    <p>Tel: {{ user.phone }}</p>
+                    <p>Site: <a ng-href="{{'http://' + user.website }}" target="_blank">{{ user.website }}</a></p>
+                    <p>Email: <a ng-href="{{'mailto:' + user.email }}">{{ user.email }}</a></p>
+                </div><!--panel-body-->
+            </div><!--panel-->
+        </div><!--col-->
+    </div><!--row-->
+</div><!--colntainer-->

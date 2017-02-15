@@ -17,7 +17,7 @@
 
             activate();
             function activate() {
-                vm.users = UserService.query();
+                return vm.users = UserService.query();
             }
         }
 })();
