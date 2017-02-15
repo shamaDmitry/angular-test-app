@@ -8,7 +8,7 @@
         Router.$inject = ['$stateProvider', '$urlRouterProvider'];
 
         function Router($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.when("", "/");
+            //$urlRouterProvider.when("", "/");
 
             $urlRouterProvider.otherwise("/");
 
@@ -31,7 +31,20 @@
                 templateUrl: 'templates/dashboard/index.html'
             })
             .state('dashboard.main', {
-                templateUrl: 'templates/dashboard/main.html'
+                url: '/dashboard',
+                templateUrl: 'templates/dashboard/main.html',
+                controller: 'UserListController',
+                controllerAs: 'userList'
+            })
+            .state('dashboard.profile', {
+                url: '/profile',
+                templateUrl: 'templates/dashboard/profile.html'
+            })
+            .state('dashboard.user', {
+                url: '/user/:id',
+                templateUrl: 'templates/dashboard/user.html',
+                controller: 'UserController',
+                controllerAs: 'user'
             })
         }
 

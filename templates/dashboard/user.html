@@ -1,0 +1,18 @@
+<!--controllerAs user-->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Name: {{ user.title }}</h1>
+            <!--<h1>{{ userList.title }}</h1>-->
+        </div><!--col-->
+    </div><!--row-->
+
+    <div class="row">
+        <div class="col-md-12">
+            <pre>
+                {{ user.user | json }}
+            </pre>
+        </div><!--col-->
+    </div><!--row-->
+</div><!--container-->
